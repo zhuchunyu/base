@@ -1,19 +1,11 @@
 import React, {Component} from 'react';
-import {AppRegistry, Navigator, Text, View, TouchableOpacity, Platform, StyleSheet} from 'react-native';
+import {AppRegistry, Navigator, Text, View, TouchableOpacity, Platform} from 'react-native';
 
-import Splash from './components/Splash';
-
-const defaultRoute = {
-  component: Splash
-};
+import MyScene from './MyScene';
+import Test from './test';
+import Hello from './Hello';
 
 class MyProject extends Component {
-  _renderScene(route, navigator) {
-    let Component = route.component;
-    return (
-      <Component {...route.params} navigator={navigator} />
-    );
-  }
   _renderNavBar() {
     const styles = {
       title: {
@@ -86,31 +78,55 @@ class MyProject extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={defaultRoute}
-        renderScene={this._renderScene}
+        initialRoute={{title: 'My Initial Scene', index: 0}}
+        renderScene={(route, navigator) => {
+          if (route.title === 'Hello') {
+            return <Hello navigator={navigator} route={route} />
+          }
+          if (route.index < 2) {
+            return <MyScene
+              title={route.title}
+              
+              // Function to call when a new scene should be displayed
+              onForward={ () => {
+                const nextIndex = route.index + 1;
+                navigator.push({
+                  title: 'Scene ' + nextIndex,
+                  index: nextIndex
+                });
+              }}
+              
+              // Function to call to go back to the previous scene
+              onBack={() => {
+                if (route.index > 0) {
+                  navigator.pop();
+                }
+              }}
+              
+              toHello={() => {
+                const nextIndex = route.index + 1;
+                navigator.push({
+                  title: 'Hello',
+                  index: nextIndex
+                });
+              }}
+              
+              navigator={navigator}
+              route={route}
+            />
+          } else {
+            return <Test onBack={() => {
+              if (route.index > 0) {
+                navigator.pop();
+              }
+            }} navigator={navigator} route={route} />
+          }
+        }}
         sceneStyle={{paddingTop: (Platform.OS === 'android' ? 66 : 74)}}
-        navigationBar={this._renderNavBar()} />
-    );
+        navigationBar={this._renderNavBar()}
+      />
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('MyProject', () => MyProject);

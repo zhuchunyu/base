@@ -86,7 +86,7 @@ class FlexDimensionsBasics extends Component {
       // 试试去掉父View中的`flex: 1`。
       // 则父View不再具有尺寸，因此子组件也无法再撑开。
       // 然后再用`height: 300`来代替父View的`flex: 1`试试看？
-      <View style={{height: 60, width:385}}>
+      <View style={{height: 60, width:355}}>
         <View style={{flex: 1, backgroundColor: 'powderblue'}} ><Text>hello</Text></View>
         <View style={{flex: 2, backgroundColor: 'skyblue', flexDirection: 'row'}}>
           <Image source={require('../images/Bananavarieties.jpg')} style={{width: 50, height: 30}}/>
@@ -201,7 +201,7 @@ export default class Hello extends BaseComponent {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to React Native OK!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
@@ -211,7 +211,7 @@ export default class Hello extends BaseComponent {
         <Blink text='I love to blink' />
         <FlexDimensionsBasics />
         <PizzaTranslator />
-        <View style={{width:385, height:60}}>
+        <View style={{width:365, height:60}}>
           <ListViewBasics/>
         </View>
       </View>
