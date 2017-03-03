@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 const fetchParams = {
-  first: 4,
+  first: 20,
   assetType: 'Photos',
 };
 const imgURL = 'https://blog.yourtion.com/images/2016/03/'; // backup0.png
@@ -55,7 +55,7 @@ export default class CameraRollDemo extends Component {
   render() {
     const photos = this.state.photos || [];
     const photosView = [];
-    for(let i = 0; i < 4; i += 2) {
+    for(let i = 0; i < 20; i += 2) {
       photosView.push(
         <View style={styles.row} key={i}>
           <View style={styles.flex}>

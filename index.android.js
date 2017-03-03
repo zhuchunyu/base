@@ -14,6 +14,7 @@ class MyProject extends Component {
       <Component {...route.params} navigator={navigator} />
     );
   }
+  
   _renderNavBar() {
     const styles = {
       title: {
@@ -29,7 +30,7 @@ class MyProject extends Component {
     
     var routeMapper = {
       LeftButton(route, navigator, index, navState) {
-        if(index > 0) {
+        if (index > 0) {
           return (
             <TouchableOpacity
               onPress={() => navigator.pop()}
@@ -48,7 +49,7 @@ class MyProject extends Component {
         }
       },
       RightButton(route, navigator, index, navState) {
-        if(index > 0 && route.rightButton) {
+        if (index > 0 && route.rightButton) {
           return (
             <TouchableOpacity
               onPress={() => navigator.pop()}
@@ -72,7 +73,7 @@ class MyProject extends Component {
         style={{
           alignItems: 'center',
           backgroundColor: '#55ACEE',
-          shadowOffset:{
+          shadowOffset: {
             width: 1,
             height: 0.5,
           },
@@ -83,16 +84,24 @@ class MyProject extends Component {
       />
     );
   }
+  
   render() {
+    
     return (
       <Navigator
         initialRoute={defaultRoute}
         renderScene={this._renderScene}
         sceneStyle={{paddingTop: (Platform.OS === 'android' ? 56 : 74)}}
-        navigationBar={this._renderNavBar()} />
+        navigationBar={this._renderNavBar()}/>
     );
   }
 }
+import AsyncStorageDemo from './DemoAPIs/AsyncStorageDemo';
+
+/*
+ 
+ 
+ */
 
 const styles = StyleSheet.create({
   container: {

@@ -39,7 +39,7 @@ class MyImage extends Component {
   goPreview() {
     let count = this.state.count;
     count--;
-    if (count > 0){
+    if (count >= 0){
       this.setState({
         count,
       });

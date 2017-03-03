@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 3 / PixelRatio.get(),
     borderBottomColor: '#EF2D36',
     alignItems: 'center',
+    backgroundColor:'#F2F2F2'
   },
   font: {
     fontSize: 25,
